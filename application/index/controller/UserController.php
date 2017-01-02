@@ -23,8 +23,8 @@ class UserController {
   }
   //  登录
   public function login () {
-    $name = input('get.name');
-    $password = input('get.password');
+    $name = input('post.name');
+    $password = input('post.password');
     if (strlen($name) == 0) {
       return ajaxReturn(1, '请输入用户名');
     }
@@ -33,8 +33,8 @@ class UserController {
     }
 
     $user = User::get(function($query) {
-      $query->where('name', input('get.name'))
-        ->where('password', encry(input('get.password')));
+      $query->where('name', input('post.name'))
+        ->where('password', encry(input('post.password')));
     });
 
     if ($user) {
@@ -57,6 +57,10 @@ class UserController {
     $password = input('post.password');
     if ($this->check_repeat($name)) {
       return ajaxReturn(1, '用户名重复');
+    }
+    
+    if ($password != input('post.confirm')) {
+      return ajaxReturn(1, '确认密码错误');
     }
 
     $result = $user->register([

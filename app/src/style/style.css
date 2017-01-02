@@ -1,0 +1,8 @@
+div, body {
+  margin: 0;
+}
+
+.frame {
+  width: 95%;
+  margin: auto;
+}
