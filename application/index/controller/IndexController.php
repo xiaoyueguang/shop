@@ -5,6 +5,6 @@ class IndexController
 {
     public function index()
     {
-        return ['action' => '首页'];
+        // return ['action' => '首页'];
     }
 }

@@ -5,10 +5,12 @@ import 'mint-ui/lib/style.css';
 import mintUi from 'mint-ui';
 import store from './store';
 import ajax from './libs/ajax.js';
+import native from './libs/native.js';
 
 let {Toast, MessageBox} = mintUi
 Vue.prototype.$toast = Toast
 Vue.prototype.$message = MessageBox
+Vue.prototype.$native = native;
 
 Vue.use(ajax)
 

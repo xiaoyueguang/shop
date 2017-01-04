@@ -6,17 +6,18 @@ use app\index\model\User;
 class UserController {
   //  获取一般的信息
   public function index() {
-    if (session('isLogin')) {
+    if (session('isLogin') || input('post.appuid')) {
       $user = User::get(function($query){
-        $query->where('id', session('user_id'));
+        $query->where('id', decode(input('post.appuid')));
       });
-      return [
+      return ajaxReturn(0, [
+        'appuid' => encode($user->id),
         'name' => $user->name,
         'nickname' => $user->nickname,
         'email' => $user->email,
         'avatar' => $user->avatar,
         'is_disable' => $user->is_disable
-      ];
+      ]);
     } else {
       return ajaxReturn(1, '未登录');
     }
@@ -39,7 +40,7 @@ class UserController {
 
     if ($user) {
       $this->login_session($user->id);
-      return ajaxReturn(0, '登录成功');
+      return ajaxReturn(0, encode($user->id));
     } else {
       session(null);
       return ajaxReturn(1, '登录失败');

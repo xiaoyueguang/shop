@@ -60,11 +60,25 @@
           },
           success: ({code, msg}) => {
             if (code === 0) {
-              this.$router.go(-1)
+              // this.$router.go(-1)
+              this.getUserInfo(msg)
+              // debugger
             }
             if (code === 1) {
               alert(msg)
             }
+          }
+        })
+      },
+      getUserInfo (appuid) {
+        this.$ajax({
+          api: 'index/user/index',
+          type: 'post',
+          data: {
+            appuid
+          },
+          success: data => {
+            this.$native.login(data.msg)            
           }
         })
       }
