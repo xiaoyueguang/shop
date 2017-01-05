@@ -7,6 +7,6 @@ export default {
     delete localStorage.user
   },
   isLogin () {
-    return localStorage && localStorage.user && !!JSON.parse(localStorage.user).user
+    return !!localStorage && !!localStorage.user && !!JSON.parse(localStorage.user).appuid
   }
 }

@@ -17,6 +17,21 @@ const router = new VueRouter({
   routes
 });
 
+router.beforeEach((to, from, next) => {
+  if (native.isLogin()) {
+    next()
+  } else {
+    if (to.name === 'login') {
+      next()
+    } else {
+      sessionStorage.returnRouterName = to.name
+      next({
+        name: 'login'
+      })
+    }
+  }
+})
+
 const app = new Vue({
   router,
   store,

@@ -11,6 +11,10 @@ function ajax ({
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
 
+    if (!data.appuid && localStorage && localStorage.user && JSON.parse(localStorage.user).appuid) {
+      data.appuid = JSON.parse(localStorage.user).appuid;
+    }
+
     let params = '';
     for (let key in data) {
       params += `&${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
@@ -31,7 +35,8 @@ function ajax ({
       if (xhr.readyState === 4) {
         let {status} = xhr
         if (status >= 200 && status < 300) {
-          success(JSON.parse(xhr.responseText))
+          // success(JSON.parse(xhr.responseText))
+          resolve(JSON.parse(xhr.responseText))
         }
       }
     }

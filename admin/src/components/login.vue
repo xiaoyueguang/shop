@@ -34,19 +34,52 @@
       }
     },
     methods: {
-      login () {
-        this.$ajax({
+      async login () {
+        let {code, msg} = await this.$ajax({
           api: 'index/admin/login',
           type: 'post',
           data: {
             name: this.user,
             password: this.password
-          },
-          success: ({code, msg}) => {
-            console.log(msg)
           }
         })
+
+        if (code === 0) {
+          this.$message({
+            message: '登录成功',
+            type: 'success'
+          })
+          this.getUserInfo(msg)
+
+        } else {
+          this.$message({
+            message: msg,
+            type: 'warning'
+          });
+        }
+      },
+
+      async getUserInfo (appuid) {
+        let {code, msg} = await this.$ajax({
+          api: 'index/user/index',
+          type: 'post',
+          data: {
+            appuid
+          }
+        });
+        if (code === 0) {
+          localStorage.user = JSON.stringify(msg)
+          if (sessionStorage.returnRouterName) {
+            setTimeout(() => {
+              this.$router.replace({
+                name: sessionStorage.returnRouterName
+              })
+              delete sessionStorage.returnRouterName
+            }, 600)
+          }
+        }
       }
+
     }
 
   }
