@@ -3,8 +3,8 @@
     <el-col :span="2" v-if="!isLogin">
       <x-menu></x-menu>
     </el-col>
-
-    <router-view></router-view>
+    <el-col :span="20">
+      <router-view></router-view>
   </div>
 </template>
 
