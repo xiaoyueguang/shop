@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <el-col :span="2" v-if="!isLogin">
+  <el-row :gutter="20">
+    <el-col :span="4" v-if="!isLogin">
       <x-menu></x-menu>
     </el-col>
-    <el-col :span="20">
+    <el-col :span="18">
       <router-view></router-view>
-  </div>
+    </el-col>
+  </el-row>
 </template>
 
 <script>

@@ -1,45 +1,40 @@
 <template lang="pug">
   div
+    h2 用户列表
     el-table(:data="tableData")
       el-table-column(
         label="用户名",
-        width="180"
       )
         template(scope="scope")
           span {{scope.row.name}}
       el-table-column(
         label="昵称",
-        width="180"
       )
         template(scope="scope")
           span {{scope.row.nickname}}
       el-table-column(
         label="邮箱",
-        width="180"
       )
         template(scope="scope")
           span {{scope.row.email}}
       el-table-column(
         label="创建时间",
-        width="180"
       )
         template(scope="scope")
           span {{scope.row.create_time}}
       el-table-column(
         label="是否禁用",
-        width="180"
       )
         template(scope="scope")
           span {{scope.row.is_disable === 0 ? '启用' : '禁用'}}
       el-table-column(
         label="操作",
-        width="100"
       )
         template(scope="scope")
-          el-button(type="text", size="small", @click="view(scope.row.id)") 查看
+          el-button(type="text", size="small", @click="view(scope.row.id)") 修改
           el-button(type="text", size="small", @click="disable(scope.row.id)") 禁用
-      </template>
-    </el-table-column>
+    el-button-group(style="margin-top: 24px;")
+      el-button(@click="add") 新增
 </template>
 
 <style>
@@ -56,22 +51,25 @@
     methods: {
       async getData () {
         let {code, msg} = await this.$ajax({
-          api: '/index/admin/user_list',
+          api: '/admin/user/list',
           data: {
             page: 1
           }
         })
 
-        this.tableData = msg
+        this.tableData = msg.data
       },
 
+      add () {
+        this.$router.push({name: 'user_add'})
+      },
       view (id) {
         window.alert(id)
       },
 
       async disable (id) {
         let {code, msg} = await this.$ajax({
-          api: '/index/admin/user_disable',
+          api: '/admin/user/disable',
           data: {
             id
           }

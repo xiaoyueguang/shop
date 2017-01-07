@@ -36,7 +36,7 @@
     methods: {
       async login () {
         let {code, msg} = await this.$ajax({
-          api: 'index/admin/login',
+          api: 'admin/user/login',
           type: 'post',
           data: {
             name: this.user,
