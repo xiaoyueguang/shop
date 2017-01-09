@@ -4,6 +4,8 @@ use think\Model;
 
 class User extends Model {
 
+  protected $readonly = ['name'];
+  
   public function setPasswordAttr ($val) {
     return encry($val);
   }

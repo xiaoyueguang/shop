@@ -19,6 +19,11 @@ const routes = [
     path: '/user/add',
     component: require('./views/user/add.vue')
   },
+  {
+    name: 'user_edit',
+    path: '/user/edit/:id',
+    component: require('./views/user/add.vue')
+  },
 ];
 
 export default routes;

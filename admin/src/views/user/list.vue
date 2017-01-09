@@ -31,7 +31,7 @@
         label="操作",
       )
         template(scope="scope")
-          el-button(type="text", size="small", @click="view(scope.row.id)") 修改
+          el-button(type="text", size="small", @click="edit(scope.row.id)") 修改
           el-button(type="text", size="small", @click="disable(scope.row.id)") 禁用
     el-button-group(style="margin-top: 24px;")
       el-button(@click="add") 新增
@@ -63,8 +63,8 @@
       add () {
         this.$router.push({name: 'user_add'})
       },
-      view (id) {
-        window.alert(id)
+      edit (id) {
+        this.$router.push({name: 'user_edit', params: {id}})
       },
 
       async disable (id) {

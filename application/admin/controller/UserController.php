@@ -104,4 +104,38 @@ class UserController extends IndexController {
       return ajaxReturn(0, '添加成功');
     }
   }
+  //  获取用户信息
+  public function get () {
+    $user = User::get(input('id'));
+    return ajaxReturn(0, [
+      'name' => $user['name'],
+      'avatar' => $user['avatar'],
+      'email' => $user['email'],
+      'id' => $user['id'],
+      'nickname' => $user['nickname']
+    ]);
+  }
+
+  //  保存用户
+  public function update () {
+    $id = input('id');
+    $nickname = input('nickname');
+    $email = input('email');
+    $password = input('password');
+    $data = [
+      'nickname' => $nickname,
+      'email' => $email
+    ];
+
+    if ($password != '') {
+      $data['password'] = $password;
+    }
+
+    $user = new User;
+    $user->where('id', $id)
+      ->update($data);
+    if ($user) {
+      return ajaxReturn(0, '更新成功');
+    }
+  }
 }
