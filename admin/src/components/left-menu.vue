@@ -1,5 +1,5 @@
 <template lang="pug">
-  el-menu(default-active="1")
+  el-menu(default-active="1", style="height: calc(100vh - 90px);")
     el-submenu(
       v-for="(list, index) in lists",
       :index="index + ''",
@@ -15,6 +15,7 @@
 
 <script>
   import lists from './menu-list'
+
   export default {
     data () {
       return {
