@@ -14,6 +14,15 @@ export default [
   },
   {
     name: '商品管理',
-    path: 'product'
+    submenu: [
+      {
+        name: '商品列表',
+        path: 'product_list'
+      },
+      {
+        name: '添加商品',
+        path: 'product_add'
+      }
+    ]
   }
 ]
