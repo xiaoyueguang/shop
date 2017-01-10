@@ -56,11 +56,8 @@ class UserController extends IndexController {
         ->field('id, name, nickname, email, create_time, is_disable');
     });
 
-    $count = count(User::all());
-    
-
     return ajaxReturn(0, [
-      "max" => $count,
+      "max" => User::count(),
       "data" => $user
     ]);
   }
