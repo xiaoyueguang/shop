@@ -5,7 +5,7 @@ use think\Validate;
 class User extends Validate {
   protected $rule = [
     'name' => 'require|max:25|alphaDash',
-    'password' => 'require|min:6|alphaDash',
+    'password' => 'require|min:6|max:12|alphaDash',
     'email' => 'email'
   ];
 
@@ -15,11 +15,14 @@ class User extends Validate {
     'password.require' => '请输入密码',
     'password.alphaDash' => '请输入合法的密码',
     'name.max' => '用户名过长',
-    'password.min' => '密码过短'
+    'password.min' => '密码过短',
+    'passwrod.max' => '密码过长'
   ];
 
   protected $scene = [
     'register' => ['name', 'password'],
     'name' => 'name',
+    'edit' => ['email', 'nickname'],
+    'editWithPassword' => ['email', 'nickname', 'password']
   ];
 }

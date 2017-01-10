@@ -124,17 +124,28 @@ class UserController extends IndexController {
     $password = input('password');
     $data = [
       'nickname' => $nickname,
-      'email' => $email
+      'email' => $email,
     ];
-
+    $rule = 'User.edit';
     if ($password != '') {
       $data['password'] = $password;
+      $rule = 'User.editWithPassword';
     }
 
-    $user = new User;
-    $user->where('id', $id)
-      ->update($data);
-    if ($user) {
+    $result = $this->validate($data, $rule);
+
+    if (true !== $result) {
+      return ajaxReturn(1, $result);
+    }
+
+    $user = User::find($id);
+    $user->email = $email;
+    $user->nickname = $nickname;
+    if ($password != '') {
+      $user->password = $password;
+    }
+    $result = $user->save();
+    if ($result) {
       return ajaxReturn(0, '更新成功');
     }
   }
