@@ -17,12 +17,12 @@ const routes = [
   {
     name: 'user_add',
     path: '/user/add',
-    component: resolve => require(['./views/user/list.vue'], resolve)
+    component: resolve => require(['./views/user/add.vue'], resolve)
   },
   {
     name: 'user_edit',
     path: '/user/edit/:id',
-    component: resolve => require(['./views/user/list.vue'], resolve)
+    component: resolve => require(['./views/user/add.vue'], resolve)
   },
   {
     name: 'product_list',
