@@ -49,7 +49,7 @@ class UserController extends IndexController {
 
   //  返回列表
   public function list () {
-    $page = input('get.page');
+    $page = input('page');
 
     $user = User::all(function ($query) use ($page) {
       $query->limit(10)->page($page)

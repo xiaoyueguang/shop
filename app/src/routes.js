@@ -7,11 +7,11 @@ const routes = [
   {
     name: 'order',
     path: '/order',
-    component: require('./components/order/index')
+    component: resolve => require(['./components/order/index.vue'], resolve)
   },
   {
     path: '/user',
-    component: require('./components/user/index'),
+    component: resolve => require(['./components/user/index.vue'], resolve),
     children: [
       {
         name: 'user',
