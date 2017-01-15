@@ -22,7 +22,12 @@
 </style>
 
 <script>
+  import mixins from '../mixins.js'
+  const {add} = mixins
+  console.log(add)
+
   export default {
+    mixins: [add],
     data () {
       return {
         form: {
@@ -30,68 +35,18 @@
           password: '',
           email: '',
           nickname: ''
-        }
+        },
+        getApi: '/admin/user/get'
       }
     },
+
     computed: {
-      isEdit () {
-        return this.$route.name === 'user_edit'
-      }
-    },
-    methods: {
-      async onSubmit () {
-        let data
-        if (this.isEdit) {
-          data = await this.$ajax({
-            api: '/admin/user/update',
-            data: {
-              id: this.$route.params.id,
-              ...this.form
-            }
-          })
-        } else {
-          data = await this.$ajax({
-            api: '/admin/user/add',
-            data: this.form
-          });
-        }
-
-        let {code, msg} = data
-        if (code === 0 ) {
-          this.$message({
-            message: this.isEdit ? '修改成功' : '添加成功',
-            type: 'success'
-          })
-
-          this.$router.back();
-        } else {
-          this.$message({
-            message: msg,
-            type: 'error'
-          })
-        }
-      },
-      back () {
-        this.$router.back();
-      },
-      async getUserInfo () {
-        if (this.isEdit) {
-          let {code, msg: {avatar, email, name, nickname}} = await this.$ajax({
-            api: '/admin/user/get',
-            data: {
-              id: this.$route.params.id
-            }
-          })
-
-          this.form.avatar = avatar
-          this.form.name = name
-          this.form.nickname = nickname
-          this.form.email = email
-        }
+      api () {
+        return this.isEdit ? '/admin/user/update' : '/admin/user/add'
       }
     },
     mounted () {
-      this.getUserInfo();
+      this.getInfo();
     }
   }
 </script>

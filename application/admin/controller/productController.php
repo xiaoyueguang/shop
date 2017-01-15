@@ -38,4 +38,9 @@ class ProductController extends IndexController {
 
     return ajaxReturn(1, $product);
   }
+
+  //  保存缩略图
+  public function savethumb () {
+    return 'hhhhaha.png';
+  }
 }
