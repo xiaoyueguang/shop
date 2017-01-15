@@ -7,37 +7,37 @@ const routes = [
   {
     name: 'login',
     path: '/login',
-    component: require('./components/login.vue')
+    component: resolve => require(['./components/login.vue'], resolve)
   },
   {
     name: 'user_list',
     path: '/user/list',
-    component: require('./views/user/list.vue')
+    component: resolve => require(['./views/user/list.vue'], resolve)
   },
   {
     name: 'user_add',
     path: '/user/add',
-    component: require('./views/user/add.vue')
+    component: resolve => require(['./views/user/add.vue'], resolve)
   },
   {
     name: 'user_edit',
     path: '/user/edit/:id',
-    component: require('./views/user/add.vue')
+    component: resolve => require(['./views/user/add.vue'], resolve)
   },
   {
     name: 'product_list',
     path: 'product/list',
-    component: require('./views/product/list.vue')
+    component: resolve => require(['./views/product/list.vue'], resolve)
   },
   {
     name: 'product_add',
     path: '/product/add',
-    component: require('./views/product/add.vue')
+    component: resolve => require(['./views/product/add.vue'], resolve)
   },
   {
     name: 'product_edit',
     path: '/product/edit/:id',
-    component: require('./views/product/add.vue')
+    component: resolve => require(['./views/product/add.vue'], resolve)
   },
 ];
 
