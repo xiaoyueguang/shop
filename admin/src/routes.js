@@ -26,7 +26,7 @@ const routes = [
   },
   {
     name: 'product_list',
-    path: 'product/list',
+    path: '/product/list',
     component: resolve => require(['./views/product/list.vue'], resolve)
   },
   {

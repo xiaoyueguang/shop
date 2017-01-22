@@ -9,19 +9,32 @@
         el-form-item(label="描述")
           el-input(v-model="form.desc")
         el-form-item(label="缩略图")
+          img(
+            v-if = 'form.thumb.length > 0',
+            :src = "$baseUrl + form.thumb",
+            style = "max-width: 300px; max-height: 300px;"
+            )
+          el-input(v-model="form.thumb", disabled)
           el-upload(
-            action="index.php/index/admin/product/saveThumb",
-            type="drag",
-            :thumbnail-mode="true",
+            action="http://www.shop.com/index.php/index/common/savethumb",
+            type="select",
+            name = "thumb",
+            accept = "image/*",
+            :show-upload-list = "false",
             :on-success="onSuccess"
           )
+            el-button 上传
         el-form-item
           el-button(type="primary", @click="onSubmit") {{isEdit ? '修改商品' : '添加商品'}}
           el-button(@click="back") 取消
 
 </template>
 
-<style>
+<style scoped>
+  .el-upload__inner {
+    width: 100%;
+    height: 100%;
+  }
 </style>
 
 <script>
@@ -38,7 +51,7 @@
           desc: '',
           thumb: ''
         },
-        getApi: '/admin/product/read'
+        getApi: '/admin/product/get'
       }
     },
 
@@ -48,8 +61,10 @@
       }
     },
     methods: {
-      onSuccess (response, file, fileList) {
-
+      onSuccess ({code, msg}, file, fileList) {
+        if (code === 0) {
+          this.form.thumb = msg
+        }
       }
     },
     mounted () {

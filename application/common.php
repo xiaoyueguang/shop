@@ -43,3 +43,13 @@ function decode($string = '', $skey = 'linjilei') {
   }
   return base64_decode(join('', $strArr));
 }
+//  过滤字段
+function filterField ($arr, $str) {
+  $newArr = [];
+  foreach ($str as $k) {
+    if ($arr[$k]) {
+      $newArr[$k] = $arr[$k];
+    }
+  }
+  return $newArr;
+}

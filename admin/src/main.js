@@ -12,6 +12,8 @@ Vue.use(ajax)
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 
+Vue.prototype.$baseUrl = 'http://www.shop.com/uploads/';
+
 import routes from './routes.js';
 const router = new VueRouter({
   routes

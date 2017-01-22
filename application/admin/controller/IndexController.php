@@ -11,7 +11,7 @@ class IndexController extends Controller {
   //  判断是否有权限
   public function is_admin () {
     define('ADMIN_ID', 2);
-    if (input('get.appuid') != encode(ADMIN_ID)) {
+    if (input('appuid') != encode(ADMIN_ID)) {
       echo json_encode([
         'code' => 1,
         'msg' => '没有权限操作!'

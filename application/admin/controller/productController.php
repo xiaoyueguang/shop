@@ -34,13 +34,28 @@ class ProductController extends IndexController {
 
   //  删除
   public function del () {
-    $product = Product::destory(input('id'));
-
-    return ajaxReturn(1, $product);
+    
+    $product = Product::destroy(input('id'));
+    return ajaxReturn(0, $product);
   }
 
-  //  保存缩略图
-  public function savethumb () {
-    return 'hhhhaha.png';
+  //  获取用户信息
+  public function get () {
+    $product = Product::get(input('id'));
+    return ajaxReturn(0, $product);
   }
+
+  //  修改用户
+  public function update () {
+    
+    $product = Product::find(input('id'));
+    $product->name = input('name');
+    $product->desc = input('desc');
+    $product->thumb = input('thumb');
+    $result = $product->save();
+    if ($result) {
+      return ajaxReturn(0, '更新成功');
+    }
+  }
+
 }
