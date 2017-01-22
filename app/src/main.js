@@ -1,30 +1,26 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import App from './App.vue';
-import mintUi from 'mint-ui';
-import 'mint-ui/lib/style.css';
-import store from './store';
-import ajax from './libs/ajax.js';
-import native from './libs/native.js';
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import FastClick from 'fastclick'
+import VueRouter from 'vue-router'
+import App from './App'
+import Home from './components/HelloFromVux'
 
-let {Toast, MessageBox} = mintUi
-Vue.prototype.$toast = Toast
-Vue.prototype.$message = MessageBox
-Vue.prototype.$native = native;
+Vue.use(VueRouter)
 
-Vue.use(ajax)
+const routes = [{
+  path: '/',
+  component: Home
+}]
 
-Vue.use(mintUi);
-Vue.use(VueRouter);
-
-import routes from './routes.js';
 const router = new VueRouter({
   routes
-});
+})
 
-const app = new Vue({
+FastClick.attach(document.body)
+
+/* eslint-disable no-new */
+new Vue({
   router,
-  store,
   render: h => h(App)
-}).$mount('#app');
-window.vm = app;
+}).$mount('#app')

@@ -2,7 +2,6 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-const vuxLoader = require('vux-loader')
 
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide whether to enable CSS source maps for the
@@ -11,7 +10,9 @@ var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
 var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
-let webpackConfig = {
+var vuxLoader = require('vux-loader')
+
+module.exports = vuxLoader.merge({
   entry: {
     app: './src/main.js'
   },
@@ -37,15 +38,16 @@ let webpackConfig = {
     loaders: [
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vux!vue'
       },
       {
         test: /\.js$/,
         loader: 'babel',
         include: [
-          path.join(projectRoot, 'src')
+          path.join(projectRoot, 'src'),
+          '/node_modules/vux/'
         ],
-        exclude: /node_modules/
+        // exclude: /node_modules/
       },
       {
         test: /\.json$/,
@@ -73,20 +75,13 @@ let webpackConfig = {
     loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
     postcss: [
       require('autoprefixer')({
-        browsers: ['last 7 versions']
+        browsers: ['last 2 versions']
       })
     ]
   }
-}
-
-
-module.exports = vuxLoader.merge(webpackConfig, {
-  plugins: [
-    {
-      name: 'vux-ui'
-    },
-    {
-      name: 'duplicate-style'
-    }
-  ]
+}, {
+  options: {},
+  plugins: [{
+    name: 'vux-ui'
+  }]
 })
