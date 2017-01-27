@@ -11,6 +11,12 @@
       el-table-column(label = '商品描述')
         template(scope="scope")
           span {{scope.row.desc}}
+      el-table-column(label = '价格')
+        template(scope="scope")
+          span {{scope.row.prize}}
+      el-table-column(label = '库存')
+        template(scope="scope")
+          span {{scope.row.count}}
       el-table-column(label = '商品图片')
         template(scope="scope")
           img(:src="$baseUrl + scope.row.thumb", style = "max-width: 100px; max-height: 100px;")

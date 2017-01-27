@@ -10,7 +10,7 @@ class IndexController extends Controller {
   ];
   //  判断是否有权限
   public function is_admin () {
-    define('ADMIN_ID', 2);
+    define('ADMIN_ID', 7);
     if (input('appuid') != encode(ADMIN_ID)) {
       echo json_encode([
         'code' => 1,

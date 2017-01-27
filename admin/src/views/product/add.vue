@@ -8,6 +8,10 @@
           el-input(v-model="form.name")
         el-form-item(label="描述")
           el-input(v-model="form.desc")
+        el-form-item(label="库存")
+          el-input(v-model="form.count")
+        el-form-item(label="金额")
+          el-input(v-model="form.prize")
         el-form-item(label="缩略图")
           img(
             v-if = 'form.thumb.length > 0',
@@ -49,7 +53,9 @@
         form: {
           name: '',
           desc: '',
-          thumb: ''
+          thumb: '',
+          count: 0,
+          prize: 0
         },
         getApi: '/admin/product/get'
       }
