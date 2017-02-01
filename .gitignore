@@ -4,3 +4,4 @@ composer.lock
 thinkphp
 node_modules
 uploads/
+public/admin
