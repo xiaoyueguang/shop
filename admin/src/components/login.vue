@@ -68,7 +68,7 @@
           }
         });
         if (code === 0) {
-          localStorage.user = JSON.stringify(msg)
+          sessionStorage.user = JSON.stringify(msg)
           if (sessionStorage.returnRouterName) {
             setTimeout(() => {
               this.$router.replace({
