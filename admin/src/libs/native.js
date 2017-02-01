@@ -1,12 +1,12 @@
 export default {
   login (user) {
-    localStorage.user = JSON.stringify(user)
+    sessionStorage.user = JSON.stringify(user)
   },
   logout () {
-    localStorage.user = ''
-    delete localStorage.user
+    sessionStorage.user = ''
+    delete sessionStorage.user
   },
   isLogin () {
-    return !!localStorage && !!localStorage.user && !!JSON.parse(localStorage.user).appuid
+    return !!sessionStorage && !!sessionStorage.user && !!JSON.parse(sessionStorage.user).appuid
   }
 }
