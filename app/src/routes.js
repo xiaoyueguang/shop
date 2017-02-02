@@ -10,24 +10,19 @@ const routes = [
     component: resolve => require(['./views/order/index.vue'], resolve)
   },
   {
+    name: 'login',
+    path: '/login',
+    component: require('./views/user/login')
+  },
+  {
     path: '/user',
     component: resolve => require(['./views/user/index.vue'], resolve),
     children: [
-      // {
-      //   name: 'user',
-      //   path: '',
-      //   component: require('./components/user/home')
-      // },
       {
-        name: 'login',
-        path: 'login',
-        component: require('./views/user/login')
-      },
-      // {
-      //   name: 'register',
-      //   path: 'register',
-      //   component: require('./components/user/register')
-      // }
+        name: 'user',
+        path: '/',
+        component: require('./views/user/home')
+      }
     ]
   }
 ];

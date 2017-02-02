@@ -16,10 +16,6 @@ Vue.use(ajax);
 Vue.prototype.$native = native;
 Vue.use(VueRouter)
 
-// const routes = [{
-//   path: '/',
-//   component: Home
-// }]
 Vue.prototype.$baseUrl = 'http://www.shop.com/uploads/';
 
 const router = new VueRouter({

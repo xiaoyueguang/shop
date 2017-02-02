@@ -78,7 +78,7 @@
             appuid
           },
           success: data => {
-            this.$native.login(data.msg)            
+            this.$native.login(data.msg)
           }
         })
       }

@@ -3,15 +3,15 @@
     <!--x-header>hehe</x-header-->
     <router-view></router-view>
     <tabbar>
-      <tabbar-item>
+      <tabbar-item @click.native="navClick(0)">
         <img src="./assets/logo.png" slot="icon"/>
         <span slot="label">首页</span>
       </tabbar-item>
-      <tabbar-item>
+      <tabbar-item @click.native="navClick(1)">
         <img src="./assets/logo.png" slot="icon"/>
         <span slot="label">订单</span>
       </tabbar-item>
-      <tabbar-item>
+      <tabbar-item @click.native="navClick(2)">
         <img src="./assets/logo.png" slot="icon"/>
         <span slot="label">我的</span>
       </tabbar-item>
@@ -24,6 +24,14 @@
   export default {
     components: {
       XHeader, Tabbar, TabbarItem
+    },
+    methods: {
+      navClick (index) {
+        let router = ['product', 'order', 'user']
+        this.$router.push({
+          name: router[index]
+        })
+      }
     }
   }
 </script>

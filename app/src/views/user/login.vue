@@ -49,6 +49,7 @@
           }
         })
         this.$native.login(msg)
+        this.$native.restoreURL(this.$router)
       }
     }
   }
