@@ -4,8 +4,8 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Request;
-
-class productController extends Controller
+use app\index\model\Product;
+class ProductController extends Controller
 {
     /**
      * 显示资源列表
@@ -15,6 +15,8 @@ class productController extends Controller
     public function index()
     {
         //
+        $product = Product::all();
+        return ajaxReturn(0, $product);
     }
 
     /**

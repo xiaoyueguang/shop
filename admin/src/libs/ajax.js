@@ -1,5 +1,3 @@
-import Vue from 'vue'
-
 const isTest = location.href.indexOf('localhost') > 0
 
 function ajax ({

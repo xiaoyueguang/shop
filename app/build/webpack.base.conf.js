@@ -2,6 +2,7 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
+var adminRoot = path.resolve(__dirname, '../../admin/')
 const vuxLoader = require('vux-loader')
 
 var env = process.env.NODE_ENV
@@ -43,7 +44,8 @@ let webpackConfig = {
         test: /\.js$/,
         loader: 'babel',
         include: [
-          path.join(projectRoot, 'src')
+          path.join(projectRoot, 'src'),
+          path.join(adminRoot, 'src')
         ],
         exclude: /node_modules/
       },

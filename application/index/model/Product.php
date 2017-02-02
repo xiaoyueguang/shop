@@ -4,7 +4,7 @@ namespace app\index\model;
 
 use think\Model;
 
-class product extends Model
+class Product extends Model
 {
     //
 }

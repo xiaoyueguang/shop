@@ -6,6 +6,10 @@ import VueRouter from 'vue-router'
 import App from './App'
 import routes from './routes.js'
 
+import ajax from '../../admin/src/libs/ajax.js';
+import native from '../../admin/src/libs/native.js';
+Vue.use(ajax);
+Vue.prototype.$native = native;
 Vue.use(VueRouter)
 
 // const routes = [{

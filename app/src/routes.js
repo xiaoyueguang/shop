@@ -1,17 +1,17 @@
 const routes = [
-  // {
-  //   name: 'product',
-  //   path: '/product',
-  //   component: require('./components/product/index')
-  // },
-  // {
-  //   name: 'order',
-  //   path: '/order',
-  //   component: resolve => require(['./components/order/index.vue'], resolve)
-  // },
+  {
+    name: 'product',
+    path: '/product',
+    component: require('./views/product/index')
+  },
+  {
+    name: 'order',
+    path: '/order',
+    component: resolve => require(['./views/order/index.vue'], resolve)
+  },
   {
     path: '/user',
-    component: resolve => require(['./components/user/index.vue'], resolve),
+    component: resolve => require(['./views/user/index.vue'], resolve),
     // children: [
     //   {
     //     name: 'user',
