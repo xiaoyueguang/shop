@@ -9,8 +9,8 @@ function ajax ({
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
 
-    if (!data.appuid && localStorage && localStorage.user && JSON.parse(localStorage.user).appuid) {
-      data.appuid = JSON.parse(localStorage.user).appuid;
+    if (!data.appuid && sessionStorage && sessionStorage.user && JSON.parse(sessionStorage.user).appuid) {
+      data.appuid = JSON.parse(sessionStorage.user).appuid;
     }
 
     let params = '';

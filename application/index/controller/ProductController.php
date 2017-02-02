@@ -15,8 +15,14 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $product = Product::all();
-        return ajaxReturn(0, $product);
+        $page = input('page');
+        $product = Product::all(function ($query) use ($page) {
+            $query->limit(10)->page($page);
+        });
+        return ajaxReturn(0, [
+            "max" => ceil(Product::count() / 10),
+            "data" => $product
+        ]);
     }
 
     /**

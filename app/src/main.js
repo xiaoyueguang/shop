@@ -8,6 +8,10 @@ import routes from './routes.js'
 
 import ajax from '../../admin/src/libs/ajax.js';
 import native from '../../admin/src/libs/native.js';
+
+import {AlertPlugin} from 'vux'
+Vue.use(AlertPlugin)
+
 Vue.use(ajax);
 Vue.prototype.$native = native;
 Vue.use(VueRouter)
@@ -16,6 +20,7 @@ Vue.use(VueRouter)
 //   path: '/',
 //   component: Home
 // }]
+Vue.prototype.$baseUrl = 'http://www.shop.com/uploads/';
 
 const router = new VueRouter({
   mode: 'history',
