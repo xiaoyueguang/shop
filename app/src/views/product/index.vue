@@ -11,7 +11,7 @@
       ref = 'scroller'
     >
       <div>
-        <card v-for="item in items" :header="{title: item.name}">
+        <card v-for="item in items" :header="{title: item.name}" @click.native="goDetail(item.id)">
           <img :src="$baseUrl + item.thumb" slot="content"/>
         </card>
       </div>
@@ -65,6 +65,14 @@
         this.page = this.page === this.maxPage ? this.page : this.page + 1
         await this.getData()
         this.$refs.scroller.donePullup()
+      },
+      goDetail (id) {
+        this.$router.push({
+          name: 'detail',
+          params: {
+            id
+          }
+        })
       }
     },
     mounted () {

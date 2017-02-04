@@ -52,9 +52,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \think\Response
      */
-    public function read($id)
-    {
-        //
+    public function detail () {
+        $product = Product::get(input('id'));
+        if ($product) {
+            return ajaxReturn(0, $product);
+        } else {
+            return ajaxReturn(1, '该商品不存在');
+        }
     }
 
     /**
