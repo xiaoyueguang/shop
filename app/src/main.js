@@ -9,8 +9,9 @@ import routes from './routes.js'
 import ajax from '../../admin/src/libs/ajax.js';
 import native from '../../admin/src/libs/native.js';
 
-import {AlertPlugin} from 'vux'
+import {AlertPlugin, ToastPlugin} from 'vux'
 Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
 
 Vue.use(ajax);
 Vue.prototype.$native = native;
