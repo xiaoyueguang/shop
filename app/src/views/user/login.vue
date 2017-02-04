@@ -41,7 +41,7 @@
         }
       },
       async getUserInfo (appuid) {
-        let msg = await this.$ajax({
+        let {msg} = await this.$ajax({
           api: 'index/user/index',
           type: 'post',
           data: {

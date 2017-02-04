@@ -16,9 +16,10 @@ export default {
       query: route.query
     })
   },
-  restoreURL ({replace}) {
+  restoreURL ($router) {
     if (!!sessionStorage && !!sessionStorage.returnURL) {
-      replace(JSON.parse(sessionStorage.returnURL))
+      $router.replace.call($router, JSON.parse(sessionStorage.returnURL))
+      delete sessionStorage.returnURL
     }
   }
 }
