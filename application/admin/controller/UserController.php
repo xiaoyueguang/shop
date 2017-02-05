@@ -146,4 +146,10 @@ class UserController extends IndexController {
       return ajaxReturn(0, '更新成功');
     }
   }
+
+  // 获取该用户ID的金额
+  public function getGold ($id) {
+    $user = User::get($id);
+    return ajaxReturn(0, $user->gold);
+  }
 }

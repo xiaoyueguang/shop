@@ -8,7 +8,10 @@ class User extends Model {
   protected $auto = ['password'];
   protected $insert = ['password'];
   protected $update = ['password'];
-  
+  protected $type = [
+    'gold' => 'float'
+  ];
+
   public function setPasswordAttr ($val) {
     return encry($val);
   }

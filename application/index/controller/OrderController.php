@@ -7,6 +7,6 @@ use think\Request;
 
 class OrderController extends Controller {
   public function add () {
-    
+    return ajaxReturn(0, '111');
   }
 }

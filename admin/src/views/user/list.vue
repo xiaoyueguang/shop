@@ -33,6 +33,7 @@
         template(scope="scope")
           el-button(type="text", size="small", @click="edit(scope.row.id)") 修改
           el-button(type="text", size="small", @click="disable(scope.row.id)") 禁用
+          el-button(type="text", size="small", @click="openGold(scope.row.id)") 充值
     el-button-group(style="margin-top: 24px;")
       el-button(@click="add") 新增
 </template>
@@ -87,6 +88,20 @@
             type: 'error'
           })
         }
+      },
+      async openGold (id) {
+        let {code, msg} = await this.$ajax({
+          api: '/admin/user/getGold',
+          data: {id}
+        })
+        if (code === 0) {
+          this.$prompt(`请调整金额, 原金额为${msg}`, '提示', {}).then(({value}) => {
+            debugger
+          })
+        }
+      },
+      async recharge (id) {
+
       }
     },
     mounted () {
