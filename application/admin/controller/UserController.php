@@ -152,4 +152,11 @@ class UserController extends IndexController {
     $user = User::get($id);
     return ajaxReturn(0, $user->gold);
   }
+  // 设置用户金额
+  public function setGold ($id, $gold) {
+    $user = User::get($id);
+    $user->gold = (float)$gold;
+    $user->save();
+    return ajaxReturn(0, '更新成功!');
+  }
 }

@@ -95,8 +95,24 @@
           data: {id}
         })
         if (code === 0) {
-          this.$prompt(`请调整金额, 原金额为${msg}`, '提示', {}).then(({value}) => {
-            debugger
+          this.$prompt(`请调整金额, 原金额为${msg}`, '提示', {}).then(async ({value}) => {
+            if (!isNaN(Number(value))) {
+              let {code, msg} = await this.$ajax({
+                api: '/admin/user/setGold',
+                data: {id, gold: Number(value)}
+              })
+              if (code === 0) {
+                this.$message({
+                  message: '设置成功',
+                  type: 'success'
+                })
+              }
+            }
+          }).catch(() => {
+            this.$message({
+              message: '取消设置金额',
+              type: 'error'
+            })
           })
         }
       },
