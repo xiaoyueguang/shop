@@ -6,9 +6,9 @@ use app\index\model\User;
 class UserController {
   //  获取一般的信息
   public function index() {
-    if (session('isLogin') || input('post.appuid')) {
+    if (session('isLogin') || input('appuid') && input('appuid') != 'null') {
       $user = User::get(function($query){
-        $query->where('id', decode(input('post.appuid')));
+        $query->where('id', decode(input('appuid')));
       });
       return ajaxReturn(0, [
         'appuid' => encode($user->id),
@@ -34,8 +34,10 @@ class UserController {
     }
 
     $user = User::get(function($query) {
-      $query->where('name', input('post.name'))
-        ->where('password', encry(input('post.password')));
+      $query->where([
+        'name' => input('name'),
+        'password' => encry(input('password'))
+      ])->find();
     });
 
     if ($user) {
