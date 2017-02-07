@@ -6,6 +6,10 @@ use think\Validate;
 class User extends Model {
   protected $table = 'user';
 
+  protected $type = [
+    'gold' => 'float'
+  ];
+
   //  注册
   public function register ($data) {
     $user = new User;

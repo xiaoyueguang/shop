@@ -9,7 +9,8 @@ class User extends Model {
   protected $insert = ['password'];
   protected $update = ['password'];
   protected $type = [
-    'gold' => 'float'
+    'gold' => 'float',
+    'status' => 'integer'
   ];
 
   public function setPasswordAttr ($val) {
