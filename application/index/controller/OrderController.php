@@ -17,7 +17,7 @@ class OrderController extends Controller {
     $product = Product::get(input('id'));
     $prize = $product->prize;
     $order = new Order;
-    if ((int)$gold > (int)$prize) {
+    if ($gold >= $prize) {
       $result = $order->allowField(true)->save([
         'product_id' => $product->id,
         'user_id' => $user->id,
@@ -71,6 +71,7 @@ class OrderController extends Controller {
         ->setDec('gold', $order->prize);
 
       $order->status = 1;
+      $order->save();
       return ajaxReturn(0, '付款成功!');
     }
   }

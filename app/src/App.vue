@@ -1,7 +1,9 @@
 <template>
   <div>
     <!--x-header>hehe</x-header-->
-    <router-view></router-view>
+    <div style="height: calc(100vh - 55px); overflow: auto;">
+      <router-view></router-view>
+    </div>
     <tabbar>
       <tabbar-item @click.native="navClick(0)">
         <img src="./assets/logo.png" slot="icon"/>
@@ -20,7 +22,7 @@
 </template>
 
 <script>
-  import {XHeader, Tabbar, TabbarItem} from 'vux'
+  import {ViewBox, XHeader, Tabbar, TabbarItem} from 'vux'
   export default {
     components: {
       XHeader, Tabbar, TabbarItem

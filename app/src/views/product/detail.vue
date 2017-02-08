@@ -72,6 +72,10 @@
           }
         })
 
+        this.$vux.toast.show({
+          text: msg,
+          type: code === 0 ? 'success' : 'warn'
+        })
       }
     },
     mounted () {
