@@ -44,7 +44,7 @@ class OrderController extends Controller {
     ]);
     foreach($order as $key => $value) {
       $value['user'] = $user;
-      $value['product'] = $this->get_product($value['id']);
+      $value['product'] = $this->get_product($value['product_id']);
     }
 
     return $order;
